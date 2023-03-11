@@ -1,0 +1,28 @@
+{
+  "notes": [
+    {
+      "id": 2,
+      "title": "Title 02",
+      "detail": "Lorem ipsum dolor sit",
+      "date": "2023.03.12"
+    },
+    {
+      "id": 4,
+      "title": "Title 04",
+      "detail": "Lorem ipsum dolor sit",
+      "date": "2023.03.14"
+    },
+    {
+      "id": 6,
+      "title": "Title 06",
+      "detail": "Lorem ipsum dolor sit",
+      "date": "2023.03.16"
+    },
+    {
+      "title": "리액트 공부",
+      "detail": "재미있었다!",
+      "date": " 2023 March 11th 4:00:46 pm",
+      "id": 7
+    }
+  ]
+}

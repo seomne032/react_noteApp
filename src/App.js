@@ -1,13 +1,21 @@
 import React from 'react';
-import Hello from './Hello';
+import Header from './components/Header';
+import NoteList from './components/NoteList';
+import Write from './components/Write';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Edit from './components/Edit';
 
 export default function App() {
     return (
-        <div className="container">
-            <h1 className="title">Hello react</h1>
-            <Hello name={'picaso'} age={20} />
-            <Hello name={'Alice'} age={12} />
-            <Hello name={'Jobs'} age={30} />
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <Header />
+                <Routes>
+                    <Route path="/" element={<NoteList />} />
+                    <Route path="/write" element={<Write />} />
+                    <Route path="/edit" element={<Edit />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
