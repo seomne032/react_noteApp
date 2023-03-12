@@ -28,6 +28,7 @@ button {
 }
 .header h1 {
     letter-spacing: -0.5px;
+    margin-bottom: 20px;
 }
 .list {
     display: grid;
@@ -46,7 +47,7 @@ button {
 }
 .note h2 {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .note p {
     min-height: 160px;
