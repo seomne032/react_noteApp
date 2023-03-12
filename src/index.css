@@ -26,6 +26,9 @@ button {
     align-items: center;
     justify-content: space-between;
 }
+.header h1 {
+    letter-spacing: -0.5px;
+}
 .list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -56,6 +59,11 @@ button {
 }
 .note .bottom .date {
     margin-right: auto;
+}
+.note .bottom a {
+    font-size: 24px;
+    display: block;
+    margin-left: 10px;
 }
 
 /* write */

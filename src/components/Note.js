@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment/moment';
+import 'moment/locale/ko';
+import { db } from '../firebase';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { MdModeEdit, MdDelete } from 'react-icons/md';
+
+//MdModeEdit
+
+//MdDelete
 
 export default function Note({ note }) {
-    const [screen, setScreen] = useState(false);
+    const dt = note.date.toDate();
+    const date = moment(dt).format('YYYY년 MMMM Do hh:mm');
 
-    function remove() {
-        if (window.confirm('정말 삭제하시겠어요?')) {
-            fetch(`http://localhost:3001/notes/${note.id}`, {
-                method: 'DELETE',
-            }).then(res => {
-                if (res.ok) {
-                    setScreen(true);
-                }
-            });
+    async function remove() {
+        if (window.confirm('노트를 삭제하시나요?')) {
+            await deleteDoc(doc(db, 'notes', note.id));
         }
-    }
-
-    if (screen === true) {
-        return null;
     }
 
     return (
@@ -25,11 +25,13 @@ export default function Note({ note }) {
             <h2>{note.title}</h2>
             <p>{note.detail}</p>
             <div className="bottom">
-                <div className="date">{note.date}</div>
+                <div className="date">{date}</div>
                 <Link to={'/edit'} state={note}>
-                    <button>수정</button>
+                    <MdModeEdit />
                 </Link>
-                <button onClick={remove}>삭제</button>
+                <a href="#x" onClick={remove}>
+                    <MdDelete />
+                </a>
             </div>
         </li>
     );

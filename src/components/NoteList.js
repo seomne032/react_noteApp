@@ -1,13 +1,26 @@
 import { useEffect, useState } from 'react';
 import Note from './Note';
+import { db } from '../firebase';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 
 export default function NoteList() {
     const [notes, setNotes] = useState([]);
+
     useEffect(() => {
-        fetch('http://localhost:3001/notes?_sort=date&_order=desc')
-            .then(res => res.json())
-            .then(data => setNotes(data));
-    }, []); // 가장 최초에 실행될 함수
+        const q = query(collection(db, 'notes'), orderBy('date', 'desc'));
+        const unsubscribe = onSnapshot(q, querySnapshot => {
+            const items = [];
+            querySnapshot.forEach(doc => {
+                items.push({
+                    ...doc.data(),
+                    id: doc.id,
+                });
+            });
+            setNotes(items);
+        });
+        // 리스너분리:변동이 있을 때만 불러온다
+        return () => unsubscribe();
+    }, []);
 
     return (
         <ul className="list">

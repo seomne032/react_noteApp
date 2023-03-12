@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment/moment';
 import 'moment/locale/ko';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function Write() {
     const navigate = useNavigate();
@@ -13,26 +14,16 @@ export default function Write() {
         navigate(-1);
     }
 
-    function write(e) {
+    async function write(e) {
         e.preventDefault();
-        console.log(titleRef.current.value);
-        console.log(detailRef.current.value);
-
-        fetch('http://localhost:3001/notes/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title: titleRef.current.value,
-                detail: detailRef.current.value,
-                date: moment().format('YYYY년 MMMM Do hh:mm:ss'),
-            }),
-        }).then(res => {
-            if (res.ok) {
-                navigate('/');
-            }
+        //쓰기
+        await addDoc(collection(db, 'notes'), {
+            title: titleRef.current.value,
+            detail: detailRef.current.value,
+            date: serverTimestamp(),
         });
+        //쓰기가 완료하면 홈으로간다
+        navigate('/');
     }
 
     return (
