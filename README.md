@@ -21,5 +21,5 @@ npm i react-router-dom
 
 ### firebase 사용 예정
 
-git switch main
+git switch main  
 git switch firebase
