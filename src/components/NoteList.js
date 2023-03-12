@@ -4,7 +4,7 @@ import Note from './Note';
 export default function NoteList() {
     const [notes, setNotes] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3001/notes')
+        fetch('http://localhost:3001/notes?_sort=date&_order=desc')
             .then(res => res.json())
             .then(data => setNotes(data));
     }, []); // 가장 최초에 실행될 함수
