@@ -18,3 +18,8 @@ json-server --watch ./src/db/data.json --port 3001
 ### react router
 
 npm i react-router-dom
+
+### firebase 사용 예정
+
+git switch main
+git switch firebase
